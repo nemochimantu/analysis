@@ -256,12 +256,32 @@
             margin-bottom: 0;
         }
 
+        /* Footer Styles */
         .footer {
-            text-align: center;
-            padding: 30px;
+            display: flex;
+            flex-direction: row-reverse; /* Фото справа, текст слева на десктопе */
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            text-align: left;
+            padding: 40px;
             color: var(--text-muted);
             font-size: 0.9rem;
             border-top: 1px solid var(--border-color);
+        }
+
+        .footer-text {
+            flex: 1;
+        }
+
+        .footer-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
 
         .footer a {
@@ -270,9 +290,22 @@
             font-weight: 500;
         }
 
+        /* Mobile Adaptation */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .content { padding: 20px; }
+            
+            .footer {
+                flex-direction: column; /* Фото сверху, текст снизу на мобилках */
+                text-align: center;
+                padding: 30px 20px;
+            }
+            
+            .footer-img {
+                margin-bottom: 20px;
+                width: 100px;
+                height: 100px;
+            }
         }
     </style>
 </head>
@@ -521,11 +554,15 @@
 
     </div>
 
+    <!-- Обновленный Footer -->
     <div class="footer">
-        Отчет сформирован на основе данных SiteAnalyzer и Google PageSpeed Insights от 16.09.2026<br>
-        Проект: letimtuda.ru<br><br>
-        <strong>Автор отчета:</strong> Екатерина Виноградова<br>
-        <strong>E-mail:</strong> <a href="mailto:katygrad@yandex.ru">katygrad@yandex.ru</a>
+        <img src="me.jpg" alt="Екатерина Виноградова" class="footer-img">
+        <div class="footer-text">
+            Отчет сформирован на основе данных SiteAnalyzer и Google PageSpeed Insights от 16.09.2026<br>
+            Проект: letimtuda.ru<br><br>
+            <strong>Автор отчета:</strong> Екатерина Виноградова<br>
+            <strong>E-mail:</strong> <a href="mailto:katygrad@yandex.ru">katygrad@yandex.ru</a>
+        </div>
     </div>
 </div>
 
