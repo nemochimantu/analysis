@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Отчет — letimtuda.ru</title>
+    <style>
+        :root {
+            --primary-color: #0E6CFF; /* Основной синий цвет letimtuda.ru */
+            --primary-dark: #0a54cc;
+            --bg-color: #F8F9FA;
+            --text-main: #1A1A1A;
+            --text-muted: #6B7280;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --border-color: #E5E7EB;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: #fff;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .hero-logo {
+            width: 140px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .score-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 16px;
+            margin-top: 25px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .score-badge span {
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .score-badge small {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Content Layout */
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 28px;
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* Grid & Cards */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-color: var(--primary-color);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Status Tags */
+        .tag {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .tag-danger { background: #FEE2E2; color: #991B1B; }
+        .tag-warning { background: #FEF3C7; color: #92400E; }
+        .tag-success { background: #D1FAE5; color: #065F46; }
+        .tag-info { background: #DBEAFE; color: #1E40AF; }
+
+        /* Lists */
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .icon {
+            min-width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #fff;
+            margin-top: 4px;
+            font-weight: bold;
+        }
+
+        .icon-danger { background: var(--danger); }
+        .icon-warning { background: var(--warning); }
+        .icon-success { background: var(--success); }
+        .icon-info { background: var(--primary-color); }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .data-table th {
+            background: #F3F4F6;
+            text-align: left;
+            padding: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .data-table td {
+            padding: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Conclusion Block */
+        .conclusion-box {
+            background: #F0F9FF;
+            border: 1px solid var(--primary-color);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .conclusion-box p {
+            margin-bottom: 15px;
+        }
+
+        .conclusion-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Hero/Header Section -->
+    <div class="hero">
+        <img src="https://letimtuda.ru/header/letim-logo-white.svg" alt="Летим Туда" class="hero-logo">
+        <h1>SEO Анализ: letimtuda.ru</h1>
+        <p>Платформа для путешествий: экскурсии, eSIM и зарубежные банковские карты</p>
+        <div class="score-badge">
+            <span>91/100</span>
+            <small>Общая оценка оптимизации</small>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Технический аудит -->
+        <div class="section">
+            <h2 class="section-title">Технический аудит</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <span class="tag tag-danger">Критично</span>
+                    <h3>Sitemap.xml</h3>
+                    <p class="stat-label">Файл Sitemap.xml отсутствует на сайте. Это затрудняет индексацию страниц поисковыми системами.</p>
+                </div>
+                <div class="card">
+                    <span class="tag tag-danger">Критично</span>
+                    <h3>Canonical</h3>
+                    <p class="stat-label">Для основных страниц не указан тег Canonical. Возможны проблемы с дублированием контента в индексе.</p>
+                </div>
+                <div class="card">
+                    <span class="tag tag-warning">Внимание</span>
+                    <h3>CMS</h3>
+                    <p class="stat-label">Система управления контентом (CMS) не определена. Сайт, вероятно, написан на фреймворке без явных признаков популярной CMS.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Производительность (PageSpeed) -->
+        <div class="section">
+            <h2 class="section-title">Производительность (Google PageSpeed)</h2>
+            <div class="card" style="margin-bottom: 20px;">
+                <span class="tag tag-danger">Проверка не пройдена</span>
+                <h3>Основные интернет-показатели (Core Web Vitals)</h3>
+                <div class="grid-3" style="margin-top: 15px;">
+                    <div>
+                        <div class="stat-label">Largest Contentful Paint (LCP)</div>
+                        <div class="stat-value" style="color: var(--danger);">2,6 сек.</div>
+                    </div>
+                    <div>
+                        <div class="stat-label">Interaction to Next Paint (INP)</div>
+                        <div class="stat-value" style="color: var(--text-muted);">–</div>
+                    </div>
+                    <div>
+                        <div class="stat-label">Cumulative Layout Shift (CLS)</div>
+                        <div class="stat-value" style="color: var(--success);">0,03</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Другие показатели</h3>
+                    <ul class="feature-list">
+                        <li>
+                            <div class="icon icon-warning">!</div>
+                            <div><strong>First Contentful Paint (FCP):</strong> 2,1 сек.</div>
+                        </li>
+                        <li>
+                            <div class="icon icon-warning">!</div>
+                            <div><strong>Time to First Byte (TTFB):</strong> 1 сек.</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Возможности улучшения</h3>
+                    <ul class="feature-list">
+                        <li>
+                            <div class="icon icon-info">i</div>
+                            <div><strong>Запросы, блокирующие отрисовку:</strong> Ожидаемая экономия — 1 270 мс</div>
+                        </li>
+                        <li>
+                            <div class="icon icon-info">i</div>
+                            <div><strong>Эффективный период хранения кеша:</strong> Ожидаемая экономия — 72 КиБ</div>
+                        </li>
+                        <li>
+                            <div class="icon icon-info">i</div>
+                            <div><strong>Загрузка изображений:</strong> Ожидаемая экономия — 4 949 КиБ</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <h3>Диагностика производительности</h3>
+                <ul class="feature-list">
+                    <li>
+                        <div class="icon icon-danger">!</div>
+                        <div><strong>Принудительная компоновка:</strong> Происходит, когда JavaScript запрашивает геометрические свойства (например, offsetWidth) после того, как стили становятся недействительными из-за изменения состояния DOM.</div>
+                    </li>
+                    <li>
+                        <div class="icon icon-warning">!</div>
+                        <div><strong>Разбивка LCP:</strong> Для каждого этапа есть стратегии улучшения. В идеале большая часть времени, требуемого на полную отрисовку элементов LCP, должна тратиться на загрузку ресурсов, а не на задержки.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Статистика сканирования -->
+        <div class="section">
+            <h2 class="section-title">Статистика сканирования</h2>
+            <div class="grid-3">
+                <div class="card" style="text-align: center;">
+                    <div class="stat-value">301</div>
+                    <div class="stat-label">URL найдено</div>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div class="stat-value">120</div>
+                    <div class="stat-label">URL проверено</div>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div class="stat-value" style="color: var(--success);">200 OK</div>
+                    <div class="stat-label">Ответ сервера (все страницы)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Проблемы с контентом и мета-тегами -->
+        <div class="section">
+            <h2 class="section-title">Оптимизация страниц (On-Page)</h2>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">Анализ выявил массовые проблемы с мета-тегами и заголовками на страницах тарифов и стран.</p>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Параметр</th>
+                        <th>Статус</th>
+                        <th>Кол-во</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Дубликаты Title</td>
+                        <td><span class="tag tag-danger">Срочно</span></td>
+                        <td>98</td>
+                        <td>Массовое использование тега "Тариф" и "Летим Туда" для разных страниц.</td>
+                    </tr>
+                    <tr>
+                        <td>Дубликаты Description</td>
+                        <td><span class="tag tag-danger">Срочно</span></td>
+                        <td>98</td>
+                        <td>Одинаковое описание "eSIM с интернетом для путешествий и бизнеса" на множестве страниц.</td>
+                    </tr>
+                    <tr>
+                        <td>Дубликаты H1</td>
+                        <td><span class="tag tag-danger">Срочно</span></td>
+                        <td>99</td>
+                        <td>Заголовки H1 дублируются (например, просто название страны "Китай").</td>
+                    </tr>
+                    <tr>
+                        <td>Короткий Title</td>
+                        <td><span class="tag tag-warning">Улучшить</span></td>
+                        <td>99</td>
+                        <td>Заголовки слишком короткие и не раскрывают суть страницы для SEO.</td>
+                    </tr>
+                    <tr>
+                        <td>Короткий Description</td>
+                        <td><span class="tag tag-warning">Улучшить</span></td>
+                        <td>100</td>
+                        <td>Описания не оптимизированы по длине для сниппетов поисковых систем.</td>
+                    </tr>
+                    <tr>
+                        <td>Отсутствует Alt у изображений</td>
+                        <td><span class="tag tag-danger">Срочно</span></td>
+                        <td>7</td>
+                        <td>Найдены изображения без тега Alt.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Ссылочная масса и PageRank -->
+        <div class="section">
+            <h2 class="section-title">Внутренняя перелинковка</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Страницы без входящих ссылок</h3>
+                    <div class="stat-value" style="color: var(--danger);">97</div>
+                    <p class="stat-label" style="margin-top: 10px;">Обнаружено "висячих" узлов. Страницы тарифов (например, /countries/cn/3916) не получают внутреннего веса от других страниц сайта.</p>
+                </div>
+                <div class="card">
+                    <h3>PageRank страниц</h3>
+                    <div class="stat-value">0.00</div>
+                    <p class="stat-label" style="margin-top: 10px;">Внутренний PageRank равен нулю для большинства страниц из-за отсутствия правильной перелинковки. Вес скапливается только на главных разделах.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Уникальность контента -->
+        <div class="section">
+            <h2 class="section-title">Качество контента</h2>
+            <div class="card">
+                <ul class="feature-list">
+                    <li>
+                        <div class="icon icon-danger">!</div>
+                        <div>
+                            <strong>Низкая уникальность контента</strong><br>
+                            Страницы тарифов имеют уникальность от 4% до 10%. Текст практически идентичен на разных страницах, отличаясь лишь незначительными деталями.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon icon-warning">!</div>
+                        <div>
+                            <strong>Недостаточный объем текста</strong><br>
+                            Количество слов на страницах тарифов составляет около 121-123 слов. Это слишком мало для ранжирования по конкурентным запросам. Требуется добавить уникальные описания.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon icon-success">!</div>
+                        <div>
+                            <strong>Главная страница</strong><br>
+                            Главная страница (/) и раздел экскурсий (/excursions) оптимизированы лучше: контент более объемный (695 и 828 слов соответственно).
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Заключение -->
+        <div class="section">
+            <h2 class="section-title">Заключение и перспективы</h2>
+            <div class="conclusion-box">
+                <p>Подводя итог, стоит отметить: у проекта <strong>letimtuda.ru</strong> отличный потенциал. «Почва» здесь благородная, и при должном усердии можно кратно увеличить приток органического трафика на такие высокодоходные услуги, как eSIM и зарубежные банковские карты. Критических, фатальных ошибок, из-за которых сайт мог бы попасть под санкции поисковиков, на данный момент не обнаружено. Однако заметен ряд технических и контентных недочетов, требующих внимания.</p>
+                
+                <p>Доступный функционал и необходимость постановки задач в разработку сильно зависят от текущей CMS. Предварительно, при готовности системы к доработкам, базовая SEO-оптимизация займет около 2–3 месяцев работы одного специалиста. Ориентировочный бюджет: 50 000 рублей в месяц (без учета создания полноценных статейных текстов).</p>
+
+                <p>После прохождения этого этапа потребуется первый срез результатов и трезвая оценка целесообразности дальнейших вложений. Точно в планах должно значиться развитие крауд-маркетинга — это потребует дополнительного бюджета на сами площадки. Конкуренция в нише высока: многие соперники опираются на давнюю карму и возраст доменов, поэтому пробиваться придется за счет активного присутствия на внешних ресурсах.</p>
+
+                <p>Резюмируя: острой необходимости спасать сайт нет, но если есть желание и амбиции развиваться в органической выдаче — проект того стоит. Доработка очевидных моментов станет отличным фундаментом для будущего масштабирования и привлечения новой аудитории.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Отчет сформирован на основе данных SiteAnalyzer и Google PageSpeed Insights от 16.09.2026<br>
+        Проект: letimtuda.ru<br><br>
+        <strong>Автор отчета:</strong> Екатерина Виноградова<br>
+        <strong>E-mail:</strong> <a href="mailto:katygrad@yandex.ru">katygrad@yandex.ru</a>
+    </div>
+</div>
+
+</body>
+</html>
