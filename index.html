@@ -307,6 +307,58 @@
                 height: 100px;
             }
         }
+
+        /* Адаптация таблицы для мобильных устройств */
+        @media (max-width: 768px) {
+            /* Скрываем шапку таблицы */
+            .data-table thead {
+                display: none;
+            }
+        
+            /* Превращаем таблицу и строки в блоки */
+            .data-table, 
+            .data-table tbody, 
+            .data-table tr, 
+            .data-table td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        
+            /* Оформляем строки в виде карточек */
+            .data-table tr {
+                margin-bottom: 20px;
+                border: 1px solid var(--border-color);
+                border-radius: 16px;
+                padding: 5px 20px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            }
+        
+            /* Настраиваем ячейки */
+            .data-table td {
+                border: none;
+                border-bottom: 1px solid #f3f4f6;
+                padding: 15px 0;
+                text-align: left;
+            }
+        
+            .data-table td:last-child {
+                border-bottom: none;
+            }
+        
+            /* Выделяем первый параметр (название) */
+            .data-table td:first-child {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--text-main);
+                padding-bottom: 5px;
+            }
+        
+            /* Убираем отступ у тегов статуса внутри таблицы */
+            .data-table td .tag {
+                margin-bottom: 0;
+            }
+        }
     </style>
 </head>
 <body>
